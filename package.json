@@ -1,0 +1,15 @@
+{
+  "name": "aserto-spa-js",
+  "version": "0.1.0",
+  "description": "Aserto single-page application javascript SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aserto",
+    "authorization"
+  ],
+  "author": "Aserto",
+  "license": "Apache-2.0"
+}
