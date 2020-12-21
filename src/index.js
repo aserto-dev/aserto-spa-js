@@ -1,4 +1,4 @@
-import AsertoClient from 'src/AsertoClient'
+import AsertoClient from './AsertoClient'
 
 export default async function createAsertoClient(options) {
   const aserto = new AsertoClient(options);
