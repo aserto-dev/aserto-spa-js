@@ -1,6 +1,6 @@
 # Aserto single-page application javascript SDK
 
-Loosely modeled after the [Auth0 SPA SDK](https://github.com/auth0/auth0-spa-sdk).
+Loosely modeled after the [Auth0 SPA SDK](https://github.com/auth0/auth0-spa-js).
 
 ## Installation
 
