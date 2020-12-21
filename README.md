@@ -60,6 +60,12 @@ const aserto = new AsertoClient({
 
 ### Get the authorization map for a service that exposes it
 
+First, make sure that the service supports an authorization map endpoint - for example using the NodeJS Express middleware [express-jwt-aserto](https://github.com/aserto-dev/express-jwt-aserto). 
+
+Once a service exposes the endpoint, you can call the `getAuthorizationMap()` function on the `AsertoClient` instance to retrieve the map.
+
+The following example adds an event handler to a button that retrieves the authorization map and logs it to the console:
+
 ```html
 <button id="get-authz-map">Get AuthZ Map</button>
 ```
