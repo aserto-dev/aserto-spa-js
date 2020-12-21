@@ -1,6 +1,6 @@
 {
   "name": "@aserto/aserto-spa-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Aserto single-page application javascript SDK",
   "main": "index.js",
   "scripts": {
