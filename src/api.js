@@ -13,12 +13,12 @@ export async function get(token, path, headers = {}) {
     urlObject.port = 8080;
   }
 
-  const urlPath = urlObject + path;
+  const url = urlObject + path;
 
   headers.Authorization = `Bearer ${token}`;
 
   try {
-    const response = await fetch(urlPath, {
+    const response = await fetch(url, {
       headers: headers
     });
     
