@@ -10,7 +10,16 @@ export default class AsertoClient {
     this.service = options.serviceUrl || new URL(window.location.origin);
   }
 
-  async getAccessMap() {
-    return await get(this.service, this.token, this.endpoint);
+  async loadAccessMap() {
+    const [map, error] = await get(this.service, this.token, this.endpoint);
+    if (error) {
+      throw new Error(`AsertoClient: ${error.message}`);
+    } else {
+      this.__accessMap = map;
+    }
+  }
+
+  accessMap() {
+    return this.__accessMap;
   }
 }

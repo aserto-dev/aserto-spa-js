@@ -44,11 +44,14 @@ Create an `AsertoClient` in the following way:
 ```js
 import createAsertoClient from '@aserto/aserto-spa-js';
 
-const aserto = createAsertoClient({
+const aserto = await createAsertoClient({
   accessToken: accessToken,  // valid access token
   serviceUrl: 'https://service-url', // defaults to window.location.origin
   endpoint: '/__accessmap' // access map endpoint, defaults to /__accessmap
 });
+
+// log the access map to the console
+console.log(aserto.accessMap);
 
 // or you can just instantiate the client on its own
 import { AsertoClient } from '@aserto/aserto-spa-js';
@@ -58,26 +61,8 @@ const aserto = new AsertoClient({
   serviceUrl: 'https://service-url', // defaults to window.location.origin
   endpoint: '/__accessmap' // access map endpoint, defaults to  /__accessmap
 });
+
+// explicitly load, and then log the access map to the console
+await aserto.loadAccessMap();
+console.log(aserto.accessMap);
 ```
-
-### Get the access map for a service that exposes it
-
-First, make sure that the service supports an access map endpoint - for example using the NodeJS Express middleware [express-jwt-aserto](https://github.com/aserto-dev/express-jwt-aserto). 
-
-Once a service exposes the endpoint, you can call the `getAccessMap()` function on the `AsertoClient` instance to retrieve the map.
-
-The following example adds an event handler to a button that retrieves the access map and logs it to the console:
-
-```html
-<button id="get-access-map">Get Access Map</button>
-```
-
-```js
-document.getElementById('get-access-map').addEventListener('click', async () => {
-  const [accessMap, error] = await aserto.getAccessMap();
-  if (error) {
-    console.error(error);
-  } else {
-    console.log(accessMap);
-  }
-});
