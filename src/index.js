@@ -1,8 +1,7 @@
 import AsertoClient from './AsertoClient'
 
-export default async function createAsertoClient(options) {
+export default function createAsertoClient(options) {
   const aserto = new AsertoClient(options);
-  //await aserto.checkSession();
   return aserto;
 }
 
