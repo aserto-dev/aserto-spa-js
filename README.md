@@ -44,7 +44,7 @@ Create an `AsertoClient` in the following way:
 ```js
 import createAsertoClient from '@aserto/aserto-spa-js';
 
-const aserto = await createAsertoClient({
+const aserto = createAsertoClient({
   accessToken: accessToken,  // valid access token
   serviceUrl: 'https://service-url', // defaults to window.location.origin
   endpoint: '/__accessmap' // access map endpoint, defaults to /__accessmap
@@ -74,7 +74,7 @@ The following example adds an event handler to a button that retrieves the acces
 
 ```js
 document.getElementById('get-access-map').addEventListener('click', async () => {
-  const [accessMap, error] = await aserto.getAuthorizationMap();
+  const [accessMap, error] = await aserto.getAccessMap();
   if (error) {
     console.error(error);
   } else {
