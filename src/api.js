@@ -3,19 +3,11 @@
 //   get - make a get call
 //   post - make a post call
 
-export async function get(token, path, headers = {}) { 
+export async function get(service, token, path, headers = {}) { 
   // construct API service URL
-  const baseUrl = window.location.origin;
-  const urlObject = new URL(baseUrl);
-
-  // replace port for local development from 3000 to 8080
-  if (urlObject.port && urlObject.port > 80) {
-    urlObject.port = 8080;
-  }
-
-  const url = urlObject + path;
-
+  const url = service + path;
   headers.Authorization = `Bearer ${token}`;
+  headers['Content-Type'] = 'application/json';
 
   try {
     const response = await fetch(url, {
@@ -29,18 +21,10 @@ export async function get(token, path, headers = {}) {
   }
 }
 
-export async function post(token, path, data, headers = {}) { 
+export async function post(service, token, path, data, headers = {}) { 
   try {
     // construct API service URL
-    const baseUrl = window.location.origin;
-    const urlObject = new URL(baseUrl);
-
-    // replace port for local development from 3000 to 8080
-    if (urlObject.port && urlObject.port > 80) {
-      urlObject.port = 8080;
-    }
-
-    const url = urlObject + path;
+    const url = service + path;
     headers.Authorization = `Bearer ${token}`;
     headers['Content-Type'] = 'application/json';
 
