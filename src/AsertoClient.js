@@ -1,8 +1,8 @@
 import { get } from './api'
 
-const VISIBLE = 1;
+const VISIBLE = 4;
 const ENABLED = 2;
-const ALLOWED = 4;
+const ALLOWED = 1;
 
 export {
   VISIBLE,
@@ -40,24 +40,24 @@ export default class AsertoClient {
     const deletepath = this.__accessMap[`${path}/delete`];
     return {
       get: {
-        visible: getpath & VISIBLE,
-        enabled: getpath & ENABLED,
-        allowed: getpath & ALLOWED,
+        visible: getpath & VISIBLE ? true : false,
+        enabled: getpath & ENABLED ? true : false,
+        allowed: getpath & ALLOWED ? true : false,
       },
       post: {
-        visible: postpath & VISIBLE,
-        enabled: postpath & ENABLED,
-        allowed: postpath & ALLOWED,
+        visible: postpath & VISIBLE ? true : false,
+        enabled: postpath & ENABLED ? true : false,
+        allowed: postpath & ALLOWED ? true : false,
       },
       put: {
-        visible: putpath & VISIBLE,
-        enabled: putpath & ENABLED,
-        allowed: putpath & ALLOWED,
+        visible: putpath & VISIBLE ? true : false,
+        enabled: putpath & ENABLED ? true : false,
+        allowed: putpath & ALLOWED ? true : false,
       },
       delete: {
-        visible: deletepath & VISIBLE,
-        enabled: deletepath & ENABLED,
-        allowed: deletepath & ALLOWED,
+        visible: deletepath & VISIBLE ? true : false,
+        enabled: deletepath & ENABLED ? true : false,
+        allowed: deletepath & ALLOWED ? true : false,
       }
     }
   }
