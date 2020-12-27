@@ -21,10 +21,11 @@ export default class AsertoClient {
   }
 
   async reload() {
-    const [map, error] = await get(this.service, this.token, this.endpoint);
+    const [response, error] = await get(this.service, this.token, this.endpoint);
     if (error) {
       throw new Error(`AsertoClient: ${error.message}`);
     } else {
+      const map = await response.json();
       this.__accessMap = map;
     }
   }
