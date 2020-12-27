@@ -50,9 +50,6 @@ const aserto = await createAsertoClient({
   endpoint: '/__accessmap' // access map endpoint, defaults to /__accessmap
 });
 
-// log the access map to the console
-console.log(aserto.accessMap());
-
 // or you can just instantiate the client on its own
 import { AsertoClient } from '@aserto/aserto-spa-js';
 
@@ -62,7 +59,49 @@ const aserto = new AsertoClient({
   endpoint: '/__accessmap' // access map endpoint, defaults to  /__accessmap
 });
 
-// explicitly load, and then log the access map to the console
-await aserto.loadAccessMap();
+// explicitly load 
+await aserto.reload();
+```
+
+## Usage 
+
+### accessMap() 
+
+Retrieves a javascript object that holds the access map
+
+```js
 console.log(aserto.accessMap());
 ```
+
+### resourceMap('path')
+
+Retrieves a map associated with a specific resource.
+
+The `path` argument is in the form `/path/to/resource`. It may contain a `{id}` component to indicate an parameter.
+
+The returned map will be in the following format: 
+```js
+{
+  get: {
+    visible: true,
+    enabled: false,
+    allowed: false
+  },
+  post: {
+    visible: true,
+    enabled: false,
+    allowed: false
+  }
+}
+```
+
+```js
+const path = '/api/path';
+const resource = aserto.resourceMap(path));
+for (const verb of ['get', 'post', 'put', 'delete']) {
+  for (const access of ['visible', 'enabled', 'allowed']) {
+    console.log(`${verb} ${path} ${access} is ${resource[verb][access]}`);
+  }
+}
+```
+
