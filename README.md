@@ -51,7 +51,7 @@ const aserto = await createAsertoClient({
 });
 
 // log the access map to the console
-console.log(aserto.accessMap);
+console.log(aserto.accessMap());
 
 // or you can just instantiate the client on its own
 import { AsertoClient } from '@aserto/aserto-spa-js';
@@ -64,5 +64,5 @@ const aserto = new AsertoClient({
 
 // explicitly load, and then log the access map to the console
 await aserto.loadAccessMap();
-console.log(aserto.accessMap);
+console.log(aserto.accessMap());
 ```
