@@ -91,10 +91,25 @@ The returned map will be in the following format:
     visible: true,
     enabled: false,
     allowed: false
+  },
+  put: {
+    //...
+  },
+  delete: {
+    //...
   }
 }
 ```
 
+Check whether a verb / path combination is visible and enabled:
+```js
+const path = '/api/path';
+const resource = aserto.resourceMap(path));
+const isVisible = resource.get.visible;
+const isEnabled = resource.get.enabled;
+```
+
+Display the values for all access levels on each verb for the path:
 ```js
 const path = '/api/path';
 const resource = aserto.resourceMap(path));
