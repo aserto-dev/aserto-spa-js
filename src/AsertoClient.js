@@ -35,7 +35,24 @@ export default class AsertoClient {
   }
 
   resourceMap(path) {
-    const map = this.__accessMap[path] && this.__accessMap[path].verb;
+    const map = (this.__accessMap[path] && this.__accessMap[path].verb) || {};
+    const defaultMap = {
+      visible: false,
+      enabled: false,
+      allowed: false
+    };
+    if (!map.GET) {
+      map.GET = defaultMap;
+    }
+    if (!map.PUT) {
+      map.GET = defaultMap;
+    }
+    if (!map.DELETE) {
+      map.GET = defaultMap;
+    }
+    if (!map.POST) {
+      map.GET = defaultMap;
+    }
     return map;
   }
 }
