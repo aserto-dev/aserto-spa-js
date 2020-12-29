@@ -41,18 +41,10 @@ export default class AsertoClient {
       enabled: false,
       allowed: false
     };
-    if (!map.GET) {
-      map.GET = defaultMap;
-    }
-    if (!map.PUT) {
-      map.GET = defaultMap;
-    }
-    if (!map.DELETE) {
-      map.GET = defaultMap;
-    }
-    if (!map.POST) {
-      map.GET = defaultMap;
-    }
+    map.GET = map.GET && defaultMap;
+    map.PUT = map.PUT && defaultMap;
+    map.DELETE = map.DELETE && defaultMap;
+    map.POST = map.POST && defaultMap;
     return map;
   }
 }
