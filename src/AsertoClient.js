@@ -35,31 +35,7 @@ export default class AsertoClient {
   }
 
   resourceMap(path) {
-    const getpath = this.__accessMap[`${path}/get`];
-    const postpath = this.__accessMap[`${path}/post`];
-    const putpath = this.__accessMap[`${path}/put`];
-    const deletepath = this.__accessMap[`${path}/delete`];
-    return {
-      get: {
-        visible: getpath & VISIBLE ? true : false,
-        enabled: getpath & ENABLED ? true : false,
-        allowed: getpath & ALLOWED ? true : false,
-      },
-      post: {
-        visible: postpath & VISIBLE ? true : false,
-        enabled: postpath & ENABLED ? true : false,
-        allowed: postpath & ALLOWED ? true : false,
-      },
-      put: {
-        visible: putpath & VISIBLE ? true : false,
-        enabled: putpath & ENABLED ? true : false,
-        allowed: putpath & ALLOWED ? true : false,
-      },
-      delete: {
-        visible: deletepath & VISIBLE ? true : false,
-        enabled: deletepath & ENABLED ? true : false,
-        allowed: deletepath & ALLOWED ? true : false,
-      }
-    }
+    const map = this.__accessMap[path] && this.__accessMap[path].verb;
+    return map;
   }
 }
