@@ -13,6 +13,12 @@ export async function get(service, token, path, headers = {}) {
     const response = await fetch(url, {
       headers: headers
     });
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error(`GET ${url}: ${text}`);
+      return [null, text];
+    }
     
     return [response, null];
   } catch (error) {
@@ -33,6 +39,12 @@ export async function post(service, token, path, data, headers = {}) {
       headers: headers,
       body: data
     });
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error(`GET ${url}: ${text}`);
+      return [null, text];
+    }
     
     return [response, null];
   } catch (error) {
