@@ -26,10 +26,10 @@ export default class AsertoClient {
     this.service = options.serviceUrl || new URL(window.location.origin);
   }
 
-  async reload() {
+  async reload(headers) {
     let response, error;
     try {
-      [response, error] = await get(this.service, this.token, this.endpoint);
+      [response, error] = await get(this.service, this.token, this.endpoint, headers);
     } catch (err) {
       throw err;
     }
