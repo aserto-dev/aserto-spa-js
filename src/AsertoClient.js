@@ -12,12 +12,6 @@ export {
 
 export default class AsertoClient {
   constructor(options) {
-    this.defaultMap = options && options.defaultMap || {
-      visible: true,
-      enabled: true,
-      allowed: false
-    };
-
     if (!options || !options.accessToken) {
       throw new Error('AsertoClient: must provide access token');
     }
@@ -45,12 +39,12 @@ export default class AsertoClient {
     return this.__accessMap;
   }
 
-  resourceMap(path) {
-    const map = (this.__accessMap[path] && this.__accessMap[path].verb) || {};
-    map.GET = map.GET || this.defaultMap;
-    map.PUT = map.PUT || this.defaultMap;
-    map.DELETE = map.DELETE || this.defaultMap;
-    map.POST = map.POST || this.defaultMap;
+  resourceMap(method, path) {
+    const key = path ? `${method}${path}` : method;
+    const map = this.__accessMap[key];
+    if (!map) {
+      throw new Error(`AsertoClient: access map does not contain the key ${key}`);
+    }
     return map;
   }
 }
