@@ -16,7 +16,7 @@ export default class AsertoClient {
       throw new Error('AsertoClient: must provide access token');
     }
     this.token = options.accessToken;
-    this.endpoint = options.accessMapEndpoint || '/__accessmap';
+    this.endpoint = options.displayStateMapEndpoint || '/__displaystatemap';
     this.service = options.serviceUrl || new URL(window.location.origin);
   }
 
@@ -31,17 +31,17 @@ export default class AsertoClient {
       throw new Error(`AsertoClient: ${error.message || error}`);
     } else {
       const map = await response.json();
-      this.__accessMap = map;
+      this.__displayStateMap = map;
     }  
   }
 
-  accessMap() {
-    return this.__accessMap;
+  displayStateMap() {
+    return this.__displayStateMap;
   }
 
-  resourceMap(method, path) {
+  getDisplayState(method, path) {
     const key = path ? `${method}${path}` : method;
-    const map = this.__accessMap[key];
+    const map = this.__displayStateMap[key];
     if (!map) {
       throw new Error(`AsertoClient: access map does not contain the key ${key}`);
     }

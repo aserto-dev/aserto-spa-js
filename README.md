@@ -47,7 +47,7 @@ import createAsertoClient from '@aserto/aserto-spa-js';
 const aserto = await createAsertoClient({
   accessToken: accessToken,  // valid access token
   serviceUrl: 'https://service-url', // defaults to window.location.origin
-  endpoint: '/__accessmap'   // access map endpoint, defaults to /__accessmap
+  endpoint: '/__displaystatemap'   // access map endpoint, defaults to /__displaystatemap
 });
 
 // or you can just instantiate the client on its own
@@ -56,7 +56,7 @@ import { AsertoClient } from '@aserto/aserto-spa-js';
 const aserto = new AsertoClient({
   accessToken: accessToken,
   serviceUrl: 'https://service-url', // defaults to window.location.origin
-  endpoint: '/__accessmap' // access map endpoint, defaults to  /__accessmap
+  endpoint: '/__displaystatemap' // access map endpoint, defaults to  /__displaystatemap
 });
 
 // explicitly load 
@@ -65,21 +65,21 @@ await aserto.reload();
 
 ## Usage 
 
-### accessMap() 
+### displayStateMap() 
 
-Retrieves a javascript object that holds the access map
+Retrieves a javascript object that holds the display state map
 
 ```js
-console.log(aserto.accessMap());
+console.log(aserto.displayStateMap());
 ```
 
-### resourceMap('method, 'path')
+### getDisplayState('method, 'path')
 
-Retrieves a map associated with a specific resource.
+Retrieves the display state associated with a specific resource.
 
 By convention, the `method` argument is an HTTP method (GET, POST, PUT, DELETE), and the `path` argument is in the form `/path/to/resource`. It may contain a `__id` component to indicate an parameter - for example, `/mycars/__id`.
 
-If only the `method` argument is passed in, it is assumed to be a key into the `accessmap` (typically in the form of `METHOD/path/to/resource`).
+If only the `method` argument is passed in, it is assumed to be a key into the `displayStateMap` (typically in the form of `METHOD/path/to/resource`).
 
 The returned map will be in the following format: 
 ```js
@@ -93,18 +93,18 @@ Check whether a verb / path combination is visible and enabled:
 ```js
 const method = 'GET';
 const path = '/api/path';
-const resource = aserto.resourceMap(method, path));
-const isVisible = resource.visible;
-const isEnabled = resource.enabled;
+const displayState = aserto.getDisplayState(method, path));
+const isVisible = displayState.visible;
+const isEnabled = displayState.enabled;
 ```
 
-Display the values for all access levels on each verb for the path:
+Log the display state values for each verb for the path:
 ```js
 const path = '/api/path';
 for (const verb of ['GET', 'POST', 'PUT', 'DELETE']) {
-  const resource = aserto.resourceMap(verb, path));
-  for (const access of ['visible', 'enabled']) {
-    console.log(`${verb} ${path} ${access} is ${resource[verb][access]}`);
+  const resource = aserto.getDisplayState(verb, path));
+  for (const value of ['visible', 'enabled']) {
+    console.log(`${verb} ${path} ${value} is ${resource[verb][value]}`);
   }
 }
 ```
