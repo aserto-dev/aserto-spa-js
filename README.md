@@ -65,6 +65,11 @@ await aserto.reload();
 
 ## Usage 
 
+### createAsertoClient(options, body) 
+
+Create an `AsertoClient` with the `options` provided, and pass the optional `body` 
+to the `reload(body)` call that initializes the client.
+
 ### displayStateMap() 
 
 Retrieves a javascript object that holds the display state map
@@ -109,3 +114,10 @@ for (const verb of ['GET', 'POST', 'PUT', 'DELETE']) {
 }
 ```
 
+### reload(body, headers)
+
+If the `body` parameter is supplied, it is passed as the body of the POST call to 
+the `__displaystatemap` API.
+
+If the `headers` parameter is supplied, these are provided as headers to the POST call to 
+the `__displaystatemap` API.

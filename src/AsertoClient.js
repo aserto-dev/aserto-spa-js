@@ -1,4 +1,4 @@
-import { get } from './api'
+import { post } from './api'
 
 const VISIBLE = 4;
 const ENABLED = 2;
@@ -20,10 +20,10 @@ export default class AsertoClient {
     this.service = options.serviceUrl || new URL(window.location.origin);
   }
 
-  async reload(headers) {
+  async reload(body, headers) {
     let response, error;
     try {
-      [response, error] = await get(this.service, this.token, this.endpoint, headers);
+      [response, error] = await post(this.service, this.token, this.endpoint, body, headers);
     } catch (err) {
       throw err;
     }
