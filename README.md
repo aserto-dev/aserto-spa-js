@@ -47,6 +47,7 @@ import createAsertoClient from '@aserto/aserto-spa-js';
 const aserto = await createAsertoClient({
   accessToken: accessToken,  // valid access token
   serviceUrl: 'https://service-url', // defaults to window.location.origin
+  policyRoot: 'policyRoot',        // policy root specified in the policy manifest
   endpoint: '/__displaystatemap'   // access map endpoint, defaults to /__displaystatemap
 });
 
@@ -56,6 +57,7 @@ import { AsertoClient } from '@aserto/aserto-spa-js';
 const aserto = new AsertoClient({
   accessToken: accessToken,
   serviceUrl: 'https://service-url', // defaults to window.location.origin
+  policyRoot: 'policyRoot',        // policy root specified in the policy manifest
   endpoint: '/__displaystatemap' // access map endpoint, defaults to  /__displaystatemap
 });
 
@@ -78,13 +80,17 @@ Retrieves a javascript object that holds the display state map
 console.log(aserto.displayStateMap());
 ```
 
-### getDisplayState('method, 'path')
+### getDisplayState('method', 'path', 'policyRoot')
 
 Retrieves the display state associated with a specific resource.
 
 By convention, the `method` argument is an HTTP method (GET, POST, PUT, DELETE), and the `path` argument is in the form `/path/to/resource`. It may contain a `__id` component to indicate an parameter - for example, `/mycars/__id`.
 
-If only the `method` argument is passed in, it is assumed to be a key into the `displayStateMap` (typically in the form of `METHOD/path/to/resource`).
+When both `method` and `path` are provided, the key into the `displayStateMap` is 
+constructed as `<policyRoot>/<METHOD>/<path>`. If the optional `policyRoot` argument is 
+provided, it overrides the `policyRoot` argument passed to `init()`.
+
+Finally, if only the `method` argument is passed in, it is assumed to be a key into the `displayStateMap` (typically in the form of `<policyRoot>/<METHOD>/<path/to/resource>`).
 
 The returned map will be in the following format: 
 ```js
