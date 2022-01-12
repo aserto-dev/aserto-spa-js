@@ -4,13 +4,9 @@ export default async function createAsertoClient(
   options: ClientOptions,
   body: RequestInit['body']
 ) {
-  try {
-    const aserto = new AsertoClient(options)
-    await aserto.reload(body)
-    return aserto
-  } catch (error) {
-    throw error
-  }
+  const aserto = new AsertoClient(options)
+  await aserto.reload(body)
+  return aserto
 }
 
 export { AsertoClient }
