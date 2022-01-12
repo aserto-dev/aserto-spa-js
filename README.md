@@ -1,4 +1,4 @@
-# Aserto single-page application javascript SDK
+# Aserto single-page application JavaScript SDK
 
 Loosely modeled after the [Auth0 SPA SDK](https://github.com/auth0/auth0-spa-js).
 
@@ -74,7 +74,7 @@ to the `reload(body)` call that initializes the client.
 
 ### displayStateMap() 
 
-Retrieves a javascript object that holds the display state map
+Retrieves a JavaScript object that holds the display state map
 
 ```js
 console.log(aserto.displayStateMap());

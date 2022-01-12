@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
+    "strict": true,
+    "lib": [
+      "DOM",
+      "ES2015"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
