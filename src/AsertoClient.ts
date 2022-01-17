@@ -10,7 +10,7 @@ export interface ClientOptions {
   accessToken: string
   displayStateMapEndpoint?: string
   serviceUrl?: URL
-  policyRoot: string
+  policyRoot?: string
 }
 
 export default class AsertoClient {
@@ -27,7 +27,7 @@ export default class AsertoClient {
     this.token = options.accessToken
     this.endpoint = options.displayStateMapEndpoint || '/__displaystatemap'
     this.service = options.serviceUrl || new URL(window.location.origin)
-    this.policyRoot = options.policyRoot
+    this.policyRoot = options.policyRoot || ''
     this.__displayStateMap = {}
   }
 
