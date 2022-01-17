@@ -1,19 +1,17 @@
 module.exports = function (api) {
-	const presets = [];
+  const presets = ['@babel/typescript']
 
-	// Resolve ES2015+ only before publishing to NPM
-	if (process.env['NODE_ENV'] === 'production') {
-		presets.push('@babel/preset-env');
-	}
+  // Resolve ES2015+ only before publishing to NPM
+  if (process.env['NODE_ENV'] === 'production') {
+    presets.push('@babel/preset-env')
+  }
 
-	// presets.push('@babel/preset-react');
+  const plugins = []
 
-	const plugins = [];
+  api.cache(false)
 
-	api.cache(false);
-
-	return {
-		presets,
-		plugins
-	};
-};
+  return {
+    presets,
+    plugins,
+  }
+}
