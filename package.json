@@ -27,6 +27,7 @@
   "author": "Aserto",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@aserto/ts-linting-configs": "^2.7.0",
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.8",
@@ -38,5 +39,6 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.63.0",
     "typescript": "^4.5.4"
-  }
+  },
+  "prettier": "@aserto/ts-linting-configs/prettier.config"
 }
